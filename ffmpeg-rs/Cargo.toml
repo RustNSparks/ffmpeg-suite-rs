@@ -12,7 +12,7 @@ keywords = ["ffmpeg", "video", "audio", "multimedia", "transcoding"]
 categories = ["multimedia", "api-bindings"]
 
 [dependencies]
-ffmpeg-common = { path = "../ffmpeg-common" }
+ffmpeg-common = '0.1.0'
 thiserror = { workspace = true }
 tokio = { workspace = true }
 serde = { workspace = true }
