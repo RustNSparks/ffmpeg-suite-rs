@@ -213,51 +213,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ffmpeg_rs"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "derive_builder",
- "ffmpeg-common",
- "regex",
- "serde",
- "tempfile",
- "thiserror",
- "tokio",
- "tokio-test",
- "tracing",
-]
-
-[[package]]
-name = "ffplay_rs"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "ffmpeg-common",
- "tempfile",
- "thiserror",
- "tokio",
- "tokio-test",
- "tracing",
-]
-
-[[package]]
-name = "ffprobe-rs"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "ffmpeg-common",
- "regex",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "tokio",
- "tokio-test",
- "tracing",
-]
-
-[[package]]
 name = "fnv"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -463,6 +418,51 @@ name = "regex-syntax"
 version = "0.8.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2b15c43186be67a4fd63bee50d0303afffcef381492ebe2c5d87f324e1b8815c"
+
+[[package]]
+name = "rust_ffmpeg"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "derive_builder",
+ "ffmpeg-common",
+ "regex",
+ "serde",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tokio-test",
+ "tracing",
+]
+
+[[package]]
+name = "rust_ffplay"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "ffmpeg-common",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tokio-test",
+ "tracing",
+]
+
+[[package]]
+name = "rust_ffprobe"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "ffmpeg-common",
+ "regex",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tokio-test",
+ "tracing",
+]
 
 [[package]]
 name = "rustc-demangle"
