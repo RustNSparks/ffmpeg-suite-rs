@@ -1,4 +1,3 @@
-use std::fmt;
 use std::io;
 use std::process::ExitStatus;
 use thiserror::Error;

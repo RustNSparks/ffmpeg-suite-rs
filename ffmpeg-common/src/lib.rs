@@ -148,7 +148,7 @@ pub struct Capabilities {
 impl Capabilities {
     /// Detect capabilities by running FFmpeg with various list options
     pub async fn detect(executable: &str) -> Result<Self> {
-        let mut caps = Self::default();
+        let caps = Self::default();
 
         // This is a simplified version - in a real implementation,
         // we would parse the output of ffmpeg -codecs, -formats, etc.

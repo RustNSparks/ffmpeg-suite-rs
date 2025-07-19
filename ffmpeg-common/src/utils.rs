@@ -4,7 +4,6 @@ use std::path::Path;
 use once_cell::sync::Lazy;
 
 use crate::error::{Error, Result};
-use crate::types::Duration;
 
 /// Regular expressions for parsing
 static TIME_REGEX: Lazy<Regex> = Lazy::new(|| {
