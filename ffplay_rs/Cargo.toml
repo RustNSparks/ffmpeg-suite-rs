@@ -1,5 +1,5 @@
 [package]
-name = "ffplay-rs"
+name = "ffplay_rs"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

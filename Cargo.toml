@@ -1,5 +1,5 @@
 [workspace]
-members = ["ffmpeg-common", "ffmpeg-rs", "ffprobe-rs", "ffplay-rs"]
+members = ["ffmpeg-common", "ffmpeg_rs", "ffprobe_rs", "ffplay_rs"]
 resolver = "2"
 
 [workspace.package]

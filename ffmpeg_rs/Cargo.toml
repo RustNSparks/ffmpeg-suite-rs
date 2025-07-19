@@ -1,5 +1,5 @@
 [package]
-name = "ffmpeg-rs"
+name = "ffmpeg_rs"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "ffmpeg-common"
+name = "ffmpeg_common"
 description = "Common library for FFmpeg Suite RS"
 version.workspace = true
 edition.workspace = true
