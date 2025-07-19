@@ -3,7 +3,7 @@ members = ["ffmpeg-common", "rust_ffmpeg", "rust_ffprobe", "rust_ffplay"]
 resolver = "2"
 
 [workspace.package]
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
 authors = ["FFmpeg Suite RS Contributors"]
 license = "MIT OR Apache-2.0"
