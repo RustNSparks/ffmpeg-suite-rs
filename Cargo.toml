@@ -1,0 +1,32 @@
+[workspace]
+members = ["ffmpeg-common", "ffmpeg-rs", "ffprobe-rs", "ffplay-rs"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["FFmpeg Suite RS Contributors"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/RustNSparks/ffmpeg-suite-rs"
+homepage = "https://github.com/RustNSparks/ffmpeg-suite-rs"
+documentation = "https://docs.rs/ffmpeg-suite-rs"
+keywords = ["ffmpeg", "ffprobe", "ffplay", "multimedia", "video"]
+categories = ["multimedia", "api-bindings"]
+
+[workspace.dependencies]
+thiserror = "2.0.12"
+tokio = { version = "1.35", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+once_cell = "1.19"
+regex = "1.10"
+tempfile = "3.8"
+which = "8.0.0"
+derive_builder = "0.20.2"
+anyhow = "1.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3

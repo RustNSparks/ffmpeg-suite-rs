@@ -1,0 +1,26 @@
+[package]
+name = "ffprobe-rs"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ffprobe-rs"
+description = "Safe and idiomatic Rust wrapper for FFprobe"
+keywords = ["ffprobe", "ffmpeg", "metadata", "multimedia", "video"]
+categories = ["multimedia", "api-bindings"]
+
+[dependencies]
+ffmpeg-common = { path = "../ffmpeg-common" }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+regex = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"
+anyhow = { workspace = true }

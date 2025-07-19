@@ -1,0 +1,27 @@
+[package]
+name = "ffmpeg-rs"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ffmpeg-rs"
+description = "Safe and idiomatic Rust wrapper for FFmpeg"
+keywords = ["ffmpeg", "video", "audio", "multimedia", "transcoding"]
+categories = ["multimedia", "api-bindings"]
+
+[dependencies]
+ffmpeg-common = { path = "../ffmpeg-common" }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+derive_builder = { workspace = true }
+tracing = { workspace = true }
+tempfile = { workspace = true }
+regex = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"
+anyhow = { workspace = true }

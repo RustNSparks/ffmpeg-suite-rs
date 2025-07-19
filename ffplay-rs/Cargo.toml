@@ -1,0 +1,23 @@
+[package]
+name = "ffplay-rs"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation = "https://docs.rs/ffplay-rs"
+description = "Safe and idiomatic Rust wrapper for FFplay"
+keywords = ["ffplay", "ffmpeg", "player", "multimedia", "video"]
+categories = ["multimedia", "api-bindings"]
+
+[dependencies]
+ffmpeg-common = { path = "../ffmpeg-common" }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.8"
+anyhow = { workspace = true }
