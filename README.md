@@ -6,9 +6,9 @@ Safe, idiomatic, and performant Rust wrappers for FFmpeg, FFprobe, and FFplay.
 
 This workspace provides three separate crates that wrap the FFmpeg suite of tools:
 
-- **`ffmpeg-rs`** - Video/audio transcoding, filtering, and manipulation
-- **`ffprobe-rs`** - Media file inspection and metadata extraction
-- **`ffplay-rs`** - Media playback with various display options
+- **`rust_ffmpeg`** - Video/audio transcoding, filtering, and manipulation
+- **`rust_ffprobe`** - Media file inspection and metadata extraction
+- **`rust_ffplay`** - Media playback with various display options
 - **`ffmpeg-common`** - Shared types and utilities
 
 ## Features
@@ -27,9 +27,9 @@ Add the crates you need to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-ffmpeg-rs = "0.1"
-ffprobe-rs = "0.1"
-ffplay-rs = "0.1"
+rust_ffmpeg = "0.1"
+rust_ffprobe = "0.1"
+rust_ffplay = "0.1"
 tokio = { version = "1", features = ["full"] }
 ```
 
@@ -38,7 +38,7 @@ tokio = { version = "1", features = ["full"] }
 ### FFmpeg - Transcoding
 
 ```rust
-use ffmpeg_rs::prelude::*;
+use rust_ffmpeg::prelude::*;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -68,7 +68,7 @@ async fn main() -> Result<()> {
 ### FFprobe - Media Inspection
 
 ```rust
-use ffprobe_rs::prelude::*;
+use rust_ffprobe::prelude::*;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -108,7 +108,7 @@ async fn main() -> Result<()> {
 ### FFplay - Media Playback
 
 ```rust
-use ffplay_rs::prelude::*;
+use rust_ffplay::prelude::*;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -139,7 +139,7 @@ async fn main() -> Result<()> {
 ### Batch Processing
 
 ```rust
-use ffmpeg_rs::prelude::*;
+use rust_ffmpeg::prelude::*;
 use futures::future::try_join_all;
 
 async fn batch_convert(files: Vec<&str>) -> Result<()> {
@@ -159,7 +159,7 @@ async fn batch_convert(files: Vec<&str>) -> Result<()> {
 ### Live Streaming
 
 ```rust
-use ffmpeg_rs::prelude::*;
+use rust_ffmpeg::prelude::*;
 
 async fn stream_to_rtmp() -> Result<()> {
     FFmpegBuilder::new()?
@@ -182,7 +182,7 @@ async fn stream_to_rtmp() -> Result<()> {
 ### Extract Frames
 
 ```rust
-use ffmpeg_rs::prelude::*;
+use rust_ffmpeg::prelude::*;
 
 async fn extract_thumbnails() -> Result<()> {
     FFmpegBuilder::new()?
@@ -204,8 +204,8 @@ async fn extract_thumbnails() -> Result<()> {
 ### Hardware Acceleration
 
 ```rust
-use ffmpeg_rs::prelude::*;
-use ffmpeg_rs::codec::hardware;
+use rust_ffmpeg::prelude::*;
+use rust_ffmpeg::codec::hardware;
 
 async fn transcode_with_gpu() -> Result<()> {
     FFmpegBuilder::new()?
@@ -272,13 +272,6 @@ Run the test suite:
 cargo test --workspace
 ```
 
-Run with example files:
-
-```bash
-cargo run --example transcode -- input.mp4 output.webm
-cargo run --example probe -- video.mp4
-cargo run --example play -- video.mp4
-```
 
 ## Safety
 
@@ -310,7 +303,6 @@ Contributions are welcome! Please ensure:
 Licensed under either of:
 
 - Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
-- MIT license ([LICENSE-MIT](LICENSE-MIT))
 
 at your option.
 

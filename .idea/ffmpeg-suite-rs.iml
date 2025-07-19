@@ -4,11 +4,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/ffmpeg-common/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ffmpeg_rs/examples" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ffmpeg_rs/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ffplay_rs/examples" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ffplay_rs/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ffprobe_rs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rust_ffmpeg/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rust_ffmpeg/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rust_ffplay/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rust_ffplay/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rust_ffprobe/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

@@ -184,21 +184,6 @@ checksum = "37909eebbb50d72f9059c3b6d82c0463f2ff062c9e95845c43a6c9c0355411be"
 [[package]]
 name = "ffmpeg-common"
 version = "0.1.0"
-dependencies = [
- "anyhow",
- "once_cell",
- "regex",
- "serde",
- "thiserror",
- "tokio",
- "tokio-test",
- "tracing",
- "which",
-]
-
-[[package]]
-name = "ffmpeg-common"
-version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4c90dbc2c0a34b371631558951ef0ee4ab66df6d9290d9fcc2dd699950b51d8f"
 dependencies = [
@@ -213,12 +198,27 @@ dependencies = [
 ]
 
 [[package]]
-name = "ffmpeg-rs"
+name = "ffmpeg_common"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "once_cell",
+ "regex",
+ "serde",
+ "thiserror",
+ "tokio",
+ "tokio-test",
+ "tracing",
+ "which",
+]
+
+[[package]]
+name = "ffmpeg_rs"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "derive_builder",
- "ffmpeg-common 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ffmpeg-common",
  "regex",
  "serde",
  "tempfile",
@@ -229,11 +229,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "ffplay-rs"
+name = "ffplay_rs"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "ffmpeg-common 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ffmpeg-common",
  "tempfile",
  "thiserror",
  "tokio",
@@ -246,7 +246,7 @@ name = "ffprobe-rs"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "ffmpeg-common 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ffmpeg-common",
  "regex",
  "serde",
  "serde_json",

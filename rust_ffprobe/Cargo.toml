@@ -1,21 +1,24 @@
 [package]
-name = "ffplay_rs"
+name = "rust_ffprobe"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
 homepage.workspace = true
-documentation = "https://docs.rs/ffplay-rs"
-description = "Safe and idiomatic Rust wrapper for FFplay"
-keywords = ["ffplay", "ffmpeg", "player", "multimedia", "video"]
+documentation = "https://docs.rs/ffprobe-rs"
+description = "Safe and idiomatic Rust wrapper for FFprobe"
+keywords = ["ffprobe", "ffmpeg", "metadata", "multimedia", "video"]
 categories = ["multimedia", "api-bindings"]
 
 [dependencies]
-ffmpeg-common ='0.1.0'
+ffmpeg-common = '0.1.0'
 thiserror = { workspace = true }
 tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
 tracing = { workspace = true }
+regex = { workspace = true }
 
 [dev-dependencies]
 tokio-test = "0.4"

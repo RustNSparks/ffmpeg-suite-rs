@@ -1,25 +1,21 @@
 [package]
-name = "ffmpeg_rs"
+name = "rust_ffplay"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
 homepage.workspace = true
-documentation = "https://docs.rs/ffmpeg-rs"
-description = "Safe and idiomatic Rust wrapper for FFmpeg"
-keywords = ["ffmpeg", "video", "audio", "multimedia", "transcoding"]
+documentation = "https://docs.rs/ffplay-rs"
+description = "Safe and idiomatic Rust wrapper for FFplay"
+keywords = ["ffplay", "ffmpeg", "player", "multimedia", "video"]
 categories = ["multimedia", "api-bindings"]
 
 [dependencies]
-ffmpeg-common = '0.1.0'
+ffmpeg-common ='0.1.0'
 thiserror = { workspace = true }
 tokio = { workspace = true }
-serde = { workspace = true }
-derive_builder = { workspace = true }
 tracing = { workspace = true }
-tempfile = { workspace = true }
-regex = { workspace = true }
 
 [dev-dependencies]
 tokio-test = "0.4"

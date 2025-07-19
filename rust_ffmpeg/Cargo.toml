@@ -1,14 +1,14 @@
 [package]
-name = "ffprobe-rs"
+name = "rust_ffmpeg"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
 homepage.workspace = true
-documentation = "https://docs.rs/ffprobe-rs"
-description = "Safe and idiomatic Rust wrapper for FFprobe"
-keywords = ["ffprobe", "ffmpeg", "metadata", "multimedia", "video"]
+documentation = "https://docs.rs/ffmpeg-rs"
+description = "Safe and idiomatic Rust wrapper for FFmpeg"
+keywords = ["ffmpeg", "video", "audio", "multimedia", "transcoding"]
 categories = ["multimedia", "api-bindings"]
 
 [dependencies]
@@ -16,8 +16,9 @@ ffmpeg-common = '0.1.0'
 thiserror = { workspace = true }
 tokio = { workspace = true }
 serde = { workspace = true }
-serde_json = { workspace = true }
+derive_builder = { workspace = true }
 tracing = { workspace = true }
+tempfile = { workspace = true }
 regex = { workspace = true }
 
 [dev-dependencies]
