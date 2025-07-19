@@ -171,7 +171,7 @@ impl CodecOptions {
         // Quality
         if let Some(quality) = self.quality {
             match self.codec.as_str() {
-                "libx264" | "libx265" | "libvpx" | "libvpx-vp9" => {
+                "libx264" | "h264" | "libx265" | "hevc" | "libvpx" | "libvpx-vp9" => {
                     cmd = cmd.option("-crf", quality);
                 }
                 _ => {

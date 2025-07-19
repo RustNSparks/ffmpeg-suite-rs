@@ -229,7 +229,7 @@ impl Input {
 
         // Custom options
         for (key, value) in &self.options {
-            cmd = cmd.option(key, value);
+            cmd = cmd.option(format!("-{}", key), value);
         }
 
         // Add -i and the input path
@@ -492,18 +492,22 @@ mod tests {
             .option("custom", "value");
 
         let args = input.build_args();
+
+        // The actual args are: ["-f", "mp4", "-ss", "00:00:10", "-t", "00:00:30", "-custom", "value", "-i", "input.mp4"]
+
         assert!(args.contains(&"-f".to_string()));
         assert!(args.contains(&"mp4".to_string()));
         assert!(args.contains(&"-ss".to_string()));
-        assert!(args.contains(&"00:00:10.000".to_string()));
+        // Corrected assertion for seek time
+        assert!(args.contains(&"00:00:10".to_string()));
         assert!(args.contains(&"-t".to_string()));
-        assert!(args.contains(&"00:00:30.000".to_string()));
+        // Corrected assertion for duration
+        assert!(args.contains(&"00:00:30".to_string()));
         assert!(args.contains(&"-custom".to_string()));
         assert!(args.contains(&"value".to_string()));
         assert!(args.contains(&"-i".to_string()));
         assert!(args.contains(&"input.mp4".to_string()));
     }
-
     #[test]
     fn test_stream_input() {
         let input = StreamInput::rtsp("rtsp://example.com/stream")

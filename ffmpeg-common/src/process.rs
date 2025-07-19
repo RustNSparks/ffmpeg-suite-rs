@@ -303,40 +303,53 @@ impl Progress {
             speed: None,
         };
 
-        // Parse key=value pairs
-        for part in line.split_whitespace() {
-            if let Some((key, value)) = part.split_once('=') {
-                match key {
-                    "frame" => progress.frame = value.parse().ok(),
-                    "fps" => progress.fps = value.parse().ok(),
-                    "q" => progress.q = value.parse().ok(),
+        // This is a more robust way to parse the key-value pairs from FFmpeg,
+        // which can have inconsistent spacing (e.g., "key=value" or "key= value").
+        let parts: Vec<&str> = line.split_whitespace().collect();
+        let mut i = 0;
+        while i < parts.len() {
+            if let Some((key, mut value)) = parts[i].split_once('=') {
+                // If `split_once` gives an empty value, it means the actual value
+                // is the next element in `parts` (e.g., "frame=", "100").
+                if value.is_empty() {
+                    if let Some(next_part) = parts.get(i + 1) {
+                        value = next_part;
+                        i += 1; // Manually advance to skip the value part in the next iteration.
+                    }
+                }
+
+                match key.trim() {
+                    "frame" => progress.frame = value.trim().parse().ok(),
+                    "fps" => progress.fps = value.trim().parse().ok(),
+                    "q" => progress.q = value.trim().parse().ok(),
                     "size" => {
                         // Remove "kB" suffix and convert to bytes
-                        if let Some(kb_str) = value.strip_suffix("kB") {
+                        if let Some(kb_str) = value.trim().strip_suffix("kB") {
                             progress.size = kb_str.parse::<u64>().ok().map(|kb| kb * 1024);
                         }
                     }
                     "time" => {
                         // Parse time in HH:MM:SS.MS format
-                        if let Ok(duration) = crate::types::Duration::from_ffmpeg_format(value) {
+                        if let Ok(duration) = crate::types::Duration::from_ffmpeg_format(value.trim()) {
                             progress.time = Some(duration.into());
                         }
                     }
                     "bitrate" => {
                         // Remove "kbits/s" suffix
-                        if let Some(kbits_str) = value.strip_suffix("kbits/s") {
+                        if let Some(kbits_str) = value.trim().strip_suffix("kbits/s") {
                             progress.bitrate = kbits_str.parse::<f64>().ok().map(|kb| kb * 1000.0);
                         }
                     }
                     "speed" => {
                         // Remove "x" suffix
-                        if let Some(speed_str) = value.strip_suffix('x') {
+                        if let Some(speed_str) = value.trim().strip_suffix('x') {
                             progress.speed = speed_str.parse().ok();
                         }
                     }
                     _ => {}
                 }
             }
+            i += 1;
         }
 
         Some(progress)
@@ -458,6 +471,7 @@ pub fn validate_output_path(path: &Path) -> Result<()> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::time::Duration;
 
     #[test]
     fn test_command_builder() {
@@ -483,7 +497,7 @@ mod tests {
         assert_eq!(progress.q, Some(28.0));
         assert_eq!(progress.size, Some(1024 * 1024));
         assert_eq!(progress.time, Some(Duration::from_secs(4)));
-        assert_eq!(progress.bitrate, Some(2097200.0));
+        assert_eq!(progress.bitrate, Some(2_097_200.0));
         assert_eq!(progress.speed, Some(1.0));
     }
 }

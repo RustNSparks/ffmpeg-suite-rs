@@ -334,7 +334,7 @@ impl Output {
 
         // Custom options
         for (key, value) in &self.options {
-            cmd = cmd.option(key, value);
+            cmd = cmd.option(format!("-{}", key), value);
         }
 
         // Output file
@@ -484,7 +484,7 @@ impl ImageSequenceOutput {
 
     /// Convert to Output
     pub fn into_output(self) -> Output {
-        let mut output = Output::new(self.pattern).format("image2");
+        let mut output = Output::new(self.pattern).format(&self.format);
 
         if let Some(fps) = self.framerate {
             output = output.option("r", fps.to_string());
