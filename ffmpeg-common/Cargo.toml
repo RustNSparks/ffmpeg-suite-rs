@@ -1,5 +1,6 @@
 [package]
 name = "ffmpeg-common"
+description = "Common library for FFmpeg Suite RS"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
