@@ -1,7 +1,31 @@
 use ffmpeg_common::Duration;
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 use std::collections::HashMap;
 use std::fmt;
+
+/// Custom deserializer for fields that can be either a string or a number
+fn deserialize_string_or_number<'de, D>(deserializer: D) -> Result<Option<u32>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    #[derive(Deserialize)]
+    #[serde(untagged)]
+    enum StringOrNumber {
+        String(String),
+        Number(u32),
+    }
+
+    let opt = Option::<StringOrNumber>::deserialize(deserializer)?;
+    match opt {
+        Some(StringOrNumber::String(s)) => {
+            s.parse::<u32>()
+                .map(Some)
+                .map_err(|_| serde::de::Error::custom(format!("Failed to parse string '{s}' as u32")))
+        }
+        Some(StringOrNumber::Number(n)) => Ok(Some(n)),
+        None => Ok(None),
+    }
+}
 
 /// Sections that can be probed
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -407,7 +431,7 @@ pub struct StreamInfo {
     pub max_bit_rate: Option<String>,
 
     /// Bits per raw sample
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(skip_serializing_if = "Option::is_none", default, deserialize_with = "deserialize_string_or_number")]
     pub bits_per_raw_sample: Option<u32>,
 
     /// Number of frames
@@ -824,6 +848,30 @@ mod tests {
         assert_eq!(parse_rational("25"), Some(25.0));
         assert_eq!(parse_rational("0/1"), Some(0.0));
         assert_eq!(parse_rational("1/0"), None);
+    }
+	
+	#[test]
+    fn test_deserialize_bits_per_raw_sample_as_string() {
+        let json = r#"{
+            "index": 0,
+            "codec_type": "video",
+            "bits_per_raw_sample": "8"
+        }"#;
+        
+        let stream: StreamInfo = serde_json::from_str(json).expect("Failed to deserialize");
+        assert_eq!(stream.bits_per_raw_sample, Some(8));
+    }
+
+    #[test]
+    fn test_deserialize_bits_per_raw_sample_as_number() {
+        let json = r#"{
+            "index": 0,
+            "codec_type": "video",
+            "bits_per_raw_sample": 10
+        }"#;
+        
+        let stream: StreamInfo = serde_json::from_str(json).expect("Failed to deserialize");
+        assert_eq!(stream.bits_per_raw_sample, Some(10));
     }
 }
 
